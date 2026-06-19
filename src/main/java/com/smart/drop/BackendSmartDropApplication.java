@@ -19,7 +19,7 @@ public class BackendSmartDropApplication {
     @SuppressWarnings("unused")
     public CommandLineRunner printSwaggerUrl(Environment env) {
         return unused -> {
-            String port = env.getProperty("server.port", "8080");
+            String port = env.getProperty("server.port", "8787");
             String swaggerUrl = "http://localhost:" + port + "/swagger-ui/index.html";
             System.out.println("\n" +
                 "╔════════════════════════════════════════════════════╗\n" +
