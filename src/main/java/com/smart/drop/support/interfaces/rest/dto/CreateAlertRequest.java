@@ -1,9 +1,9 @@
 package com.smart.drop.support.interfaces.rest.dto;
 
-public record CreateSupportTicketRequest(
+public record CreateAlertRequest(
         Integer userId,
-        String subject,
-        String priority,
+        String type,
+        String title,
         String description
 ) {
 }

@@ -22,10 +22,10 @@ public class SupportService {
         this.ticketManagementPort = ticketManagementPort;
     }
 
-    public SupportTicket createSupportTicket(Integer userId, String description) {
-        SupportTicket supportTicket = SupportTicket.create(userId, description);
+    public SupportTicket createSupportTicket(Integer userId, String subject, String priority, String description) {
+        SupportTicket supportTicket = SupportTicket.create(userId, subject, priority, description);
         SupportTicket saved = notificationRepository.saveSupportTicket(supportTicket);
-        ticketManagementPort.createTicket("Support ticket", description, "MEDIUM");
+        ticketManagementPort.createTicket(subject != null ? subject : "Support ticket", description, priority != null ? priority.toUpperCase() : "MEDIUM");
         return saved;
     }
 

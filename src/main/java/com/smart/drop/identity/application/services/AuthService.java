@@ -50,6 +50,25 @@ public class AuthService {
     }
 
     /**
+     * Valida las credenciales e inicia sesión para un usuario.
+     *
+     * @param email el email del usuario
+     * @param password la contraseña en texto plano
+     * @return el usuario validado
+     */
+    public User loginUser(String email, String password) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> UserNotFoundException.withEmail(email));
+
+        if (!user.getPasswordHash().equals(password)) {
+            throw new IllegalArgumentException("Invalid credentials");
+        }
+
+        return user;
+    }
+
+
+    /**
      * Obtiene un usuario por ID.
      *
      * @param userId el ID del usuario

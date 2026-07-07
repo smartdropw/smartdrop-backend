@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 public record SupportTicket(
         Integer ticketId,
         Integer userId,
+        String subject,
+        String priority,
         String description,
         String status,
         LocalDateTime createdAt
@@ -21,12 +23,12 @@ public record SupportTicket(
         }
     }
 
-    public static SupportTicket create(Integer userId, String description) {
-        return new SupportTicket(null, userId, description, "OPEN", LocalDateTime.now());
+    public static SupportTicket create(Integer userId, String subject, String priority, String description) {
+        return new SupportTicket(null, userId, subject, priority, description, "OPEN", LocalDateTime.now());
     }
 
     public SupportTicket withStatus(String newStatus) {
-        return new SupportTicket(ticketId, userId, description, newStatus, createdAt);
+        return new SupportTicket(ticketId, userId, subject, priority, description, newStatus, createdAt);
     }
 }
 

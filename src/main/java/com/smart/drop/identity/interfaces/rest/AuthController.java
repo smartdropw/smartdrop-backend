@@ -1,6 +1,7 @@
 package com.smart.drop.identity.interfaces.rest;
 
 import com.smart.drop.identity.application.services.AuthService;
+import com.smart.drop.identity.interfaces.rest.dto.LoginUserRequestDto;
 import com.smart.drop.identity.interfaces.rest.dto.RegisterUserRequestDto;
 import com.smart.drop.identity.interfaces.rest.dto.UserResponseDto;
 import com.smart.drop.identity.interfaces.rest.dto.AssignRoleRequestDto;
@@ -37,6 +38,21 @@ public class AuthController {
         UserResponseDto response = toUserResponseDto(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    /**
+     * Inicia sesión de un usuario.
+     * POST /api/identity/auth/login
+     *
+     * @param request credenciales del usuario
+     * @return ResponseEntity con el usuario autenticado
+     */
+    @PostMapping("/login")
+    public ResponseEntity<UserResponseDto> loginUser(@RequestBody LoginUserRequestDto request) {
+        User user = authService.loginUser(request.email(), request.password());
+        UserResponseDto response = toUserResponseDto(user);
+        return ResponseEntity.ok(response);
+    }
+
 
     /**
      * Obtiene un usuario por su ID.

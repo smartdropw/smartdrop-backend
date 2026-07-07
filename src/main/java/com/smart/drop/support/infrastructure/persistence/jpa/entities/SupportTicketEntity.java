@@ -21,6 +21,12 @@ public class SupportTicketEntity {
     @Column(name = "UserId", nullable = false)
     private Integer userId;
 
+    @Column(name = "Subject", length = 150)
+    private String subject;
+
+    @Column(name = "Priority", length = 50)
+    private String priority;
+
     @Column(name = "Description", columnDefinition = "TEXT", nullable = false)
     private String description;
 
@@ -34,6 +40,10 @@ public class SupportTicketEntity {
     public void setTicketId(Integer ticketId) { this.ticketId = ticketId; }
     public Integer getUserId() { return userId; }
     public void setUserId(Integer userId) { this.userId = userId; }
+    public String getSubject() { return subject; }
+    public void setSubject(String subject) { this.subject = subject; }
+    public String getPriority() { return priority; }
+    public void setPriority(String priority) { this.priority = priority; }
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
     public String getStatus() { return status; }

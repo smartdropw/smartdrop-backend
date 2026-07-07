@@ -32,7 +32,7 @@ public class SupportController {
 
     @PostMapping("/tickets")
     public ResponseEntity<SupportTicketResponse> createTicket(@RequestBody CreateSupportTicketRequest request) {
-        SupportTicket created = supportService.createSupportTicket(request.userId(), request.description());
+        SupportTicket created = supportService.createSupportTicket(request.userId(), request.subject(), request.priority(), request.description());
         return ResponseEntity.status(HttpStatus.CREATED).body(toTicketResponse(created));
     }
 
@@ -93,7 +93,7 @@ public class SupportController {
     }
 
     private SupportTicketResponse toTicketResponse(SupportTicket ticket) {
-        return new SupportTicketResponse(ticket.ticketId(), ticket.userId(), ticket.description(), ticket.status(), ticket.createdAt());
+        return new SupportTicketResponse(ticket.ticketId(), ticket.userId(), ticket.subject(), ticket.priority(), ticket.description(), ticket.status(), ticket.createdAt());
     }
 
     private IncidentReportResponse toIncidentResponse(IncidentReport incident) {

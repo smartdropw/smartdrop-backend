@@ -115,6 +115,8 @@ public class SupportRepositoryAdapter implements NotificationRepository {
         SupportTicketEntity entity = new SupportTicketEntity();
         entity.setTicketId(supportTicket.ticketId());
         entity.setUserId(supportTicket.userId());
+        entity.setSubject(supportTicket.subject());
+        entity.setPriority(supportTicket.priority());
         entity.setDescription(supportTicket.description());
         entity.setStatus(supportTicket.status());
         entity.setCreatedAt(supportTicket.createdAt() == null ? LocalDateTime.now() : supportTicket.createdAt());
@@ -122,7 +124,7 @@ public class SupportRepositoryAdapter implements NotificationRepository {
     }
 
     private SupportTicket toSupportTicketDomain(SupportTicketEntity entity) {
-        return new SupportTicket(entity.getTicketId(), entity.getUserId(), entity.getDescription(), entity.getStatus(), entity.getCreatedAt());
+        return new SupportTicket(entity.getTicketId(), entity.getUserId(), entity.getSubject(), entity.getPriority(), entity.getDescription(), entity.getStatus(), entity.getCreatedAt());
     }
 
     private IncidentReportEntity toIncidentReportEntity(IncidentReport incidentReport) {

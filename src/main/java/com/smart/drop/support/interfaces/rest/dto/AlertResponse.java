@@ -2,13 +2,13 @@ package com.smart.drop.support.interfaces.rest.dto;
 
 import java.time.LocalDateTime;
 
-public record SupportTicketResponse(
-        Integer ticketId,
+public record AlertResponse(
+        Integer alertId,
         Integer userId,
-        String subject,
-        String priority,
+        String type,
+        String title,
         String description,
-        String status,
+        Boolean resolved,
         LocalDateTime createdAt
 ) {
 }
