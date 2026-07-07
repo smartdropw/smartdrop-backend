@@ -61,4 +61,15 @@ public class GlobalExceptionHandler {
         return ErrorResponse.create(ex, HttpStatusCode.valueOf(HttpStatus.CONFLICT.value()), ex.getMessage());
     }
 
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    ErrorResponse handleException(Exception ex) {
+        ex.printStackTrace();
+        return ErrorResponse.create(
+                ex,
+                HttpStatusCode.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()),
+                "Generic server exception: " + (ex.getMessage() != null ? ex.getMessage() : ex.toString())
+        );
+    }
+
 }

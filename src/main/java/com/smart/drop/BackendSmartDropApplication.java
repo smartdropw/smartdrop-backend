@@ -11,7 +11,7 @@ import org.springframework.core.env.Environment;
 @SpringBootApplication
 public class BackendSmartDropApplication {
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         SpringApplication.run(BackendSmartDropApplication.class, args);
     }
 
