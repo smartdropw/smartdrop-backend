@@ -62,6 +62,12 @@ public class SupportController {
         return ResponseEntity.ok(toTicketResponse(updated));
     }
 
+    @org.springframework.web.bind.annotation.DeleteMapping("/tickets/{ticketId}")
+    public ResponseEntity<Void> deleteTicket(@PathVariable Integer ticketId) {
+        supportService.deleteSupportTicket(ticketId);
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping("/incidents")
     public ResponseEntity<IncidentReportResponse> createIncident(@RequestBody CreateIncidentReportRequest request) {
         IncidentReport created = supportService.createIncidentReport(

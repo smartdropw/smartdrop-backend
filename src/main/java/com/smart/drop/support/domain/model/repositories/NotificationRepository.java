@@ -28,6 +28,8 @@ public interface NotificationRepository {
 
     List<SupportTicket> findAllSupportTickets();
 
+    void deleteSupportTicket(Integer ticketId);
+
     IncidentReport saveIncidentReport(IncidentReport incidentReport);
 
     Optional<IncidentReport> findIncidentReportById(Integer incidentId);

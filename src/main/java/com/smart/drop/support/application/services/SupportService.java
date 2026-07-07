@@ -51,6 +51,10 @@ public class SupportService {
         return notificationRepository.saveSupportTicket(updated);
     }
 
+    public void deleteSupportTicket(Integer ticketId) {
+        notificationRepository.deleteSupportTicket(ticketId);
+    }
+
     public IncidentReport createIncidentReport(Integer adminId, String title, String description, String status) {
         IncidentReport incidentReport = IncidentReport.create(adminId, title, description, status);
         return notificationRepository.saveIncidentReport(incidentReport);

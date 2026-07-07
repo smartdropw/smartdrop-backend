@@ -74,6 +74,11 @@ public class SupportRepositoryAdapter implements NotificationRepository {
     }
 
     @Override
+    public void deleteSupportTicket(Integer ticketId) {
+        supportTicketJpaRepository.deleteById(ticketId);
+    }
+
+    @Override
     public IncidentReport saveIncidentReport(IncidentReport incidentReport) {
         IncidentReportEntity entity = toIncidentReportEntity(incidentReport);
         IncidentReportEntity saved = incidentReportJpaRepository.save(entity);
