@@ -79,6 +79,15 @@ public class AuthService {
     }
 
     /**
+     * Obtiene todos los usuarios registrados.
+     *
+     * @return una lista con todos los usuarios
+     */
+    public java.util.List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    /**
      * Obtiene un usuario por email.
      *
      * @param email el email del usuario

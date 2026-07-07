@@ -69,6 +69,20 @@ public class AuthController {
     }
 
     /**
+     * Obtiene todos los usuarios.
+     * GET /api/identity/auth/users
+     *
+     * @return ResponseEntity con la lista de usuarios
+     */
+    @GetMapping("/users")
+    public ResponseEntity<java.util.List<UserResponseDto>> getAllUsers() {
+        java.util.List<UserResponseDto> users = authService.getAllUsers().stream()
+                .map(this::toUserResponseDto)
+                .toList();
+        return ResponseEntity.ok(users);
+    }
+
+    /**
      * Obtiene un usuario por su email.
      * GET /api/identity/auth/users/by-email/{email}
      *
