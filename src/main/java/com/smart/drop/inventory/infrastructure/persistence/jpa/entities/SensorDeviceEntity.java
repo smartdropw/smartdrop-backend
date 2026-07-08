@@ -37,6 +37,9 @@ public class SensorDeviceEntity {
     @Column(name = "Status", length = 20)
     private String status;
 
+    @Column(name = "PhLevel")
+    private Double phLevel;
+
     public Integer getDeviceId() {
         return deviceId;
     }
@@ -99,5 +102,13 @@ public class SensorDeviceEntity {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Double getPhLevel() {
+        return phLevel;
+    }
+
+    public void setPhLevel(Double phLevel) {
+        this.phLevel = phLevel;
     }
 }

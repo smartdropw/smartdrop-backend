@@ -11,7 +11,8 @@ public record SensorDevice(
         String flow,
         String daily,
         Integer battery,
-        String status
+        String status,
+        Double phLevel
 ) {
     public SensorDevice {
         if (name == null || name.isBlank()) {
@@ -25,7 +26,8 @@ public record SensorDevice(
         }
     }
 
-    public static SensorDevice create(Integer userId, String name, String location, String flow, String daily, Integer battery, String status) {
-        return new SensorDevice(null, userId, name, location, flow, daily, battery, status);
+    public static SensorDevice create(Integer userId, String name, String location, String flow, String daily, Integer battery, String status, Double phLevel) {
+        Double resolvedPhLevel = phLevel != null ? phLevel : Math.round((6.0 + Math.random() * 2.5) * 100.0) / 100.0;
+        return new SensorDevice(null, userId, name, location, flow, daily, battery, status, resolvedPhLevel);
     }
 }

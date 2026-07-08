@@ -7,6 +7,7 @@ public record CreateSensorDeviceRequest(
         String flow,
         String daily,
         Integer battery,
-        String status
+        String status,
+        Double phLevel
 ) {
 }

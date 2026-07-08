@@ -52,6 +52,7 @@ public class TankRepositoryAdapter implements TankRepository {
         entity.setName(tank.name());
         entity.setCapacity(tank.capacity());
         entity.setCurrent(tank.current());
+        entity.setLiquidType(tank.liquidType());
         return entity;
     }
 
@@ -61,7 +62,8 @@ public class TankRepositoryAdapter implements TankRepository {
                 entity.getUserId(),
                 entity.getName(),
                 entity.getCapacity(),
-                entity.getCurrent()
+                entity.getCurrent(),
+                entity.getLiquidType()
         );
     }
 }

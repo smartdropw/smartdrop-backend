@@ -73,7 +73,7 @@ public class AuthService {
             System.out.println("\n=======================================================");
             System.out.println("2FA CODE GENERATED FOR " + email + ": " + code);
             System.out.println("=======================================================\n");
-            throw new TwoFactorRequiredException(email);
+            throw new TwoFactorRequiredException(email, code);
         }
 
         return user;
@@ -124,6 +124,36 @@ public class AuthService {
         return userRepository.update(user);
     }
 
+    /**
+     * Cambia la contraseña de un usuario validando la contraseña actual.
+     *
+     * @param email el email del usuario
+     * @param currentPassword la contraseña actual
+     * @param newPassword la nueva contraseña
+     */
+    public void changePassword(String email, String currentPassword, String newPassword) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> UserNotFoundException.withEmail(email));
+
+        if (!user.getPasswordHash().equals(currentPassword)) {
+            throw new IllegalArgumentException("Current password is incorrect");
+        }
+
+        user.setPasswordHash(newPassword);
+        userRepository.update(user);
+    }
+
+    /**
+     * Desactiva la autenticación de dos factores para un usuario.
+     *
+     * @param email el email del usuario
+     */
+    public void disable2FA(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> UserNotFoundException.withEmail(email));
+        user.setIsTwoFactorEnabled(false);
+        userRepository.update(user);
+    }
 
     /**
      * Obtiene un usuario por ID.

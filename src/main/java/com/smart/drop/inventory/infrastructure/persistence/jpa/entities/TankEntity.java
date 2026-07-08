@@ -28,6 +28,9 @@ public class TankEntity {
     @Column(name = "Current", nullable = false)
     private Integer current;
 
+    @Column(name = "LiquidType", length = 30)
+    private String liquidType;
+
     public Integer getTankId() {
         return tankId;
     }
@@ -66,5 +69,13 @@ public class TankEntity {
 
     public void setCurrent(Integer current) {
         this.current = current;
+    }
+
+    public String getLiquidType() {
+        return liquidType;
+    }
+
+    public void setLiquidType(String liquidType) {
+        this.liquidType = liquidType;
     }
 }

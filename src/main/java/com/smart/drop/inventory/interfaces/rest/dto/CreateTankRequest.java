@@ -4,6 +4,7 @@ public record CreateTankRequest(
         Integer userId,
         String name,
         Integer capacity,
-        Integer current
+        Integer current,
+        String liquidType
 ) {
 }

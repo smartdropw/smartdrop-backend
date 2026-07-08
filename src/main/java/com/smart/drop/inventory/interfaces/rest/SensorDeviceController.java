@@ -30,7 +30,8 @@ public class SensorDeviceController {
                 request.flow(),
                 request.daily(),
                 request.battery(),
-                request.status()
+                request.status(),
+                request.phLevel()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(toResponse(created));
     }
@@ -72,7 +73,8 @@ public class SensorDeviceController {
                 request.flow(),
                 request.daily(),
                 request.battery(),
-                request.status()
+                request.status(),
+                null
         );
         return ResponseEntity.ok(toResponse(updated));
     }
@@ -92,7 +94,8 @@ public class SensorDeviceController {
                 device.flow(),
                 device.daily(),
                 device.battery(),
-                device.status()
+                device.status(),
+                device.phLevel()
         );
     }
 }

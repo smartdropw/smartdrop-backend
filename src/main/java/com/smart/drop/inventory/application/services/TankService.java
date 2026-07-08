@@ -18,8 +18,8 @@ public class TankService {
         this.tankRepository = tankRepository;
     }
 
-    public Tank createTank(Integer userId, String name, Integer capacity, Integer current) {
-        Tank tank = Tank.create(userId, name, capacity, current);
+    public Tank createTank(Integer userId, String name, Integer capacity, Integer current, String liquidType) {
+        Tank tank = Tank.create(userId, name, capacity, current, liquidType);
         return tankRepository.save(tank);
     }
 
@@ -38,7 +38,7 @@ public class TankService {
         return tankRepository.findAll();
     }
 
-    public Tank updateTank(Integer tankId, String name, Integer capacity, Integer current) {
+    public Tank updateTank(Integer tankId, String name, Integer capacity, Integer current, String liquidType) {
         Tank existing = tankRepository.findById(tankId)
                 .orElseThrow(() -> new IllegalArgumentException("Tank not found: " + tankId));
 
@@ -47,7 +47,8 @@ public class TankService {
                 existing.userId(),
                 name,
                 capacity,
-                current
+                current,
+                liquidType != null ? liquidType : existing.liquidType()
         );
         return tankRepository.save(updated);
     }
@@ -61,7 +62,8 @@ public class TankService {
                 existing.userId(),
                 existing.name(),
                 existing.capacity(),
-                existing.capacity()
+                existing.capacity(),
+                existing.liquidType()
         );
         return tankRepository.save(replenished);
     }
