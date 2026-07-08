@@ -1,6 +1,6 @@
 package com.smart.drop.shared.interfaces.rest;
 
-import com.smart.drop.identity.domain.exceptions.*;
+import com.smart.drop.iam.domain.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.web.ErrorResponse;
