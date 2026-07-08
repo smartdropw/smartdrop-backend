@@ -55,7 +55,6 @@ public class SensorDeviceRepositoryAdapter implements SensorDeviceRepository {
         entity.setDaily(sensorDevice.daily());
         entity.setBattery(sensorDevice.battery());
         entity.setStatus(sensorDevice.status());
-        entity.setPhLevel(sensorDevice.phLevel());
         return entity;
     }
 
@@ -68,8 +67,7 @@ public class SensorDeviceRepositoryAdapter implements SensorDeviceRepository {
                 entity.getFlow(),
                 entity.getDaily(),
                 entity.getBattery(),
-                entity.getStatus(),
-                entity.getPhLevel()
+                entity.getStatus()
         );
     }
 }

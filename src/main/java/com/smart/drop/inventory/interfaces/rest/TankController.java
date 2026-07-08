@@ -27,8 +27,7 @@ public class TankController {
                 request.userId(),
                 request.name(),
                 request.capacity(),
-                request.current(),
-                request.liquidType()
+                request.current()
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(toResponse(created));
     }
@@ -67,8 +66,7 @@ public class TankController {
                 tankId,
                 request.name(),
                 request.capacity(),
-                request.current(),
-                null
+                request.current()
         );
         return ResponseEntity.ok(toResponse(updated));
     }
@@ -91,8 +89,7 @@ public class TankController {
                 tank.userId(),
                 tank.name(),
                 tank.capacity(),
-                tank.current(),
-                tank.liquidType()
+                tank.current()
         );
     }
 }

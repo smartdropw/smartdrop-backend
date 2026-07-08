@@ -18,8 +18,8 @@ public class SensorDeviceService {
         this.sensorDeviceRepository = sensorDeviceRepository;
     }
 
-    public SensorDevice createDevice(Integer userId, String name, String location, String flow, String daily, Integer battery, String status, Double phLevel) {
-        SensorDevice device = SensorDevice.create(userId, name, location, flow, daily, battery, status, phLevel);
+    public SensorDevice createDevice(Integer userId, String name, String location, String flow, String daily, Integer battery, String status) {
+        SensorDevice device = SensorDevice.create(userId, name, location, flow, daily, battery, status);
         return sensorDeviceRepository.save(device);
     }
 
@@ -38,7 +38,7 @@ public class SensorDeviceService {
         return sensorDeviceRepository.findAll();
     }
 
-    public SensorDevice updateDevice(Integer deviceId, String name, String location, String flow, String daily, Integer battery, String status, Double phLevel) {
+    public SensorDevice updateDevice(Integer deviceId, String name, String location, String flow, String daily, Integer battery, String status) {
         SensorDevice current = sensorDeviceRepository.findById(deviceId)
                 .orElseThrow(() -> new IllegalArgumentException("SensorDevice not found: " + deviceId));
 
@@ -50,8 +50,7 @@ public class SensorDeviceService {
                 flow,
                 daily,
                 battery,
-                status,
-                phLevel != null ? phLevel : current.phLevel()
+                status
         );
         return sensorDeviceRepository.save(updated);
     }

@@ -9,8 +9,6 @@ import com.smart.drop.iam.interfaces.rest.dto.ForgotPasswordRequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.ResetPasswordRequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.Enable2FARequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.Verify2FARequestDto;
-import com.smart.drop.iam.interfaces.rest.dto.ChangePasswordRequestDto;
-import com.smart.drop.iam.interfaces.rest.dto.Disable2FARequestDto;
 import com.smart.drop.iam.domain.exceptions.TwoFactorRequiredException;
 import com.smart.drop.iam.domain.model.User;
 import org.springframework.http.HttpStatus;
@@ -61,11 +59,7 @@ public class AuthController {
             UserResponseDto response = toUserResponseDto(user);
             return ResponseEntity.ok(response);
         } catch (TwoFactorRequiredException e) {
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(Map.of(
-                "requires2FA", true, 
-                "message", "A 6-digit code has been sent to your email.",
-                "simulatedCode", e.getCode()
-            ));
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(Map.of("requires2FA", true, "message", "A 6-digit code has been sent to your email."));
         }
     }
 
@@ -94,24 +88,6 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/change-password")
-    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequestDto request) {
-        authService.changePassword(request.email(), request.currentPassword(), request.newPassword());
-        return ResponseEntity.ok(Map.of("success", true, "message", "Password changed successfully."));
-    }
-
-    @PostMapping("/2fa/disable")
-    public ResponseEntity<?> disable2FA(@RequestBody Disable2FARequestDto request) {
-        authService.disable2FA(request.email());
-        return ResponseEntity.ok(Map.of("success", true, "message", "2FA has been disabled successfully."));
-    }
-
-    @GetMapping("/2fa/status/{email}")
-    public ResponseEntity<?> get2FAStatus(@PathVariable String email) {
-        return authService.getUserByEmail(email)
-                .map(user -> ResponseEntity.ok(Map.of("enabled", Boolean.TRUE.equals(user.getIsTwoFactorEnabled()))))
-                .orElse(ResponseEntity.notFound().build());
-    }
 
     /**
      * Obtiene un usuario por su ID.

@@ -8,7 +8,6 @@ public record SensorDeviceResponse(
         String flow,
         String daily,
         Integer battery,
-        String status,
-        Double phLevel
+        String status
 ) {
 }
