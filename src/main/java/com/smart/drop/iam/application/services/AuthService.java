@@ -143,6 +143,13 @@ public class AuthService {
         userRepository.update(user);
     }
 
+    public void changeName(String email, String newName) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> UserNotFoundException.withEmail(email));
+        user.setFullName(newName);
+        userRepository.update(user);
+    }
+
     /**
      * Obtiene un usuario por ID.
      *

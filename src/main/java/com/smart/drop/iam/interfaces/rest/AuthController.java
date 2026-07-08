@@ -10,7 +10,9 @@ import com.smart.drop.iam.interfaces.rest.dto.ResetPasswordRequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.Enable2FARequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.Verify2FARequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.ChangePasswordRequestDto;
+import com.smart.drop.iam.interfaces.rest.dto.ChangePasswordRequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.Disable2FARequestDto;
+import com.smart.drop.iam.interfaces.rest.dto.ChangeNameRequestDto;
 import com.smart.drop.iam.domain.exceptions.TwoFactorRequiredException;
 import com.smart.drop.iam.domain.model.User;
 import org.springframework.http.HttpStatus;
@@ -102,6 +104,12 @@ public class AuthController {
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequestDto request) {
         authService.changePassword(request.email(), request.currentPassword(), request.newPassword());
         return ResponseEntity.ok(Map.of("success", true, "message", "Password changed successfully."));
+    }
+
+    @PutMapping("/change-name")
+    public ResponseEntity<?> changeName(@RequestBody ChangeNameRequestDto request) {
+        authService.changeName(request.email(), request.newName());
+        return ResponseEntity.ok(Map.of("success", true, "message", "Name changed successfully."));
     }
 
     @PostMapping("/2fa/disable")

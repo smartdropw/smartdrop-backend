@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public class User {
     private final Integer id;
-    private final String fullName;
+    private String fullName;
     private final String email;
     private String passwordHash;
     private LocalDateTime createdAt;
@@ -61,6 +61,10 @@ public class User {
 
     public String getFullName() {
         return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
