@@ -5,17 +5,23 @@ import com.smart.drop.iam.interfaces.rest.dto.LoginUserRequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.RegisterUserRequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.UserResponseDto;
 import com.smart.drop.iam.interfaces.rest.dto.AssignRoleRequestDto;
+import com.smart.drop.iam.interfaces.rest.dto.ForgotPasswordRequestDto;
+import com.smart.drop.iam.interfaces.rest.dto.ResetPasswordRequestDto;
+import com.smart.drop.iam.interfaces.rest.dto.Enable2FARequestDto;
+import com.smart.drop.iam.interfaces.rest.dto.Verify2FARequestDto;
+import com.smart.drop.iam.domain.exceptions.TwoFactorRequiredException;
 import com.smart.drop.iam.domain.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 /**
  * Controlador REST para gestión de autenticación y usuarios.
  * Mapea requests HTTP a casos de uso del dominio.
  */
 @RestController
-@RequestMapping("/api/identity/auth")
+@RequestMapping("/api/iam/auth")
 public class AuthController {
 
     private final AuthService authService;
@@ -47,8 +53,37 @@ public class AuthController {
      * @return ResponseEntity con el usuario autenticado
      */
     @PostMapping("/login")
-    public ResponseEntity<UserResponseDto> loginUser(@RequestBody LoginUserRequestDto request) {
-        User user = authService.loginUser(request.email(), request.password());
+    public ResponseEntity<?> loginUser(@RequestBody LoginUserRequestDto request) {
+        try {
+            User user = authService.loginUser(request.email(), request.password());
+            UserResponseDto response = toUserResponseDto(user);
+            return ResponseEntity.ok(response);
+        } catch (TwoFactorRequiredException e) {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(Map.of("requires2FA", true, "message", "A 6-digit code has been sent to your email."));
+        }
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordRequestDto request) {
+        String token = authService.generatePasswordResetToken(request.email());
+        return ResponseEntity.ok(Map.of("success", true, "token", token, "message", "Recovery link simulated in console."));
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequestDto request) {
+        authService.resetPassword(request.token(), request.newPassword());
+        return ResponseEntity.ok(Map.of("success", true, "message", "Password successfully updated."));
+    }
+
+    @PostMapping("/2fa/enable")
+    public ResponseEntity<?> enable2FA(@RequestBody Enable2FARequestDto request) {
+        authService.enable2FA(request.email());
+        return ResponseEntity.ok(Map.of("success", true, "message", "2FA has been enabled successfully via Email."));
+    }
+
+    @PostMapping("/2fa/verify")
+    public ResponseEntity<UserResponseDto> verify2FA(@RequestBody Verify2FARequestDto request) {
+        User user = authService.verify2FA(request.email(), request.code());
         UserResponseDto response = toUserResponseDto(user);
         return ResponseEntity.ok(response);
     }

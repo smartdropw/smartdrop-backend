@@ -13,17 +13,23 @@ public class User {
     private final Integer id;
     private final String fullName;
     private final String email;
-    private final String passwordHash;
-    private final Set<Role> roles;
-    private final LocalDateTime createdAt;
+    private String passwordHash;
+    private LocalDateTime createdAt;
+    private Set<Role> roles;
+    private String resetToken;
+    private Boolean isTwoFactorEnabled;
+    private String twoFactorCode;
 
-    private User(Integer id, String fullName, String email, String passwordHash, Set<Role> roles, LocalDateTime createdAt) {
+    public User(Integer id, String fullName, String email, String passwordHash, LocalDateTime createdAt, Set<Role> roles, String resetToken, Boolean isTwoFactorEnabled, String twoFactorCode) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.passwordHash = passwordHash;
-        this.roles = roles != null ? Collections.unmodifiableSet(new HashSet<>(roles)) : Collections.emptySet();
         this.createdAt = createdAt;
+        this.roles = roles != null ? new HashSet<>(roles) : new HashSet<>();
+        this.resetToken = resetToken;
+        this.isTwoFactorEnabled = isTwoFactorEnabled;
+        this.twoFactorCode = twoFactorCode;
     }
 
     // Factory method para crear un nuevo usuario
@@ -37,15 +43,15 @@ public class User {
         if (passwordHash == null || passwordHash.isBlank()) {
             throw new IllegalArgumentException("passwordHash cannot be null or blank");
         }
-        return new User(null, fullName, email, passwordHash, new HashSet<>(), LocalDateTime.now());
+        return new User(null, fullName, email, passwordHash, LocalDateTime.now(), new HashSet<>(), null, false, null);
     }
 
     // Factory method para crear un usuario desde BD (con ID)
-    public static User createFromDatabase(Integer id, String fullName, String email, String passwordHash, Set<Role> roles, LocalDateTime createdAt) {
+    public static User createFromDatabase(Integer id, String fullName, String email, String passwordHash, Set<Role> roles, LocalDateTime createdAt, String resetToken, Boolean isTwoFactorEnabled, String twoFactorCode) {
         if (id == null || id <= 0) {
             throw new IllegalArgumentException("id must be a positive integer");
         }
-        return new User(id, fullName, email, passwordHash, roles, createdAt);
+        return new User(id, fullName, email, passwordHash, createdAt, roles, resetToken, isTwoFactorEnabled, twoFactorCode);
     }
 
     // Getters
@@ -65,12 +71,40 @@ public class User {
         return passwordHash;
     }
 
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
     public Set<Role> getRoles() {
-        return roles;
+        return Collections.unmodifiableSet(roles);
     }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    public Boolean getIsTwoFactorEnabled() {
+        return isTwoFactorEnabled;
+    }
+
+    public void setIsTwoFactorEnabled(Boolean isTwoFactorEnabled) {
+        this.isTwoFactorEnabled = isTwoFactorEnabled;
+    }
+
+    public String getTwoFactorCode() {
+        return twoFactorCode;
+    }
+
+    public void setTwoFactorCode(String twoFactorCode) {
+        this.twoFactorCode = twoFactorCode;
     }
 
     // Methods de negocio
@@ -78,16 +112,12 @@ public class User {
         return roles.stream().anyMatch(r -> r.getName().equals(roleName));
     }
 
-    public User addRole(Role role) {
-        Set<Role> newRoles = new HashSet<>(this.roles);
-        newRoles.add(role);
-        return new User(this.id, this.fullName, this.email, this.passwordHash, newRoles, this.createdAt);
+    public void addRole(Role role) {
+        this.roles.add(role);
     }
 
-    public User removeRole(Role role) {
-        Set<Role> newRoles = new HashSet<>(this.roles);
-        newRoles.remove(role);
-        return new User(this.id, this.fullName, this.email, this.passwordHash, newRoles, this.createdAt);
+    public void removeRole(Role role) {
+        this.roles.remove(role);
     }
 
     @Override

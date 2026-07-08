@@ -30,6 +30,15 @@ public class UserEntity {
     @Column(name = "CreatedAt", nullable = true)
     private LocalDateTime createdAt;
 
+    @Column(name = "ResetToken", length = 100)
+    private String resetToken;
+
+    @Column(name = "IsTwoFactorEnabled", nullable = false)
+    private Boolean isTwoFactorEnabled = false;
+
+    @Column(name = "TwoFactorCode", length = 6)
+    private String twoFactorCode;
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "UserRoles",
@@ -88,6 +97,30 @@ public class UserEntity {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    public Boolean getIsTwoFactorEnabled() {
+        return isTwoFactorEnabled;
+    }
+
+    public void setIsTwoFactorEnabled(Boolean isTwoFactorEnabled) {
+        this.isTwoFactorEnabled = isTwoFactorEnabled;
+    }
+
+    public String getTwoFactorCode() {
+        return twoFactorCode;
+    }
+
+    public void setTwoFactorCode(String twoFactorCode) {
+        this.twoFactorCode = twoFactorCode;
     }
 
     public Set<RoleEntity> getRoles() {

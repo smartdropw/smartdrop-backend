@@ -29,6 +29,9 @@ public class UserRepositoryAdapter implements UserRepository {
     @Override
     public User save(User user) {
         UserEntity entity = new UserEntity(user.getFullName(), user.getEmail(), user.getPasswordHash());
+        entity.setResetToken(user.getResetToken());
+        entity.setIsTwoFactorEnabled(user.getIsTwoFactorEnabled() != null ? user.getIsTwoFactorEnabled() : false);
+        entity.setTwoFactorCode(user.getTwoFactorCode());
         UserEntity saved = userJpaRepository.save(entity);
         return toDomainModel(saved);
     }
@@ -63,6 +66,9 @@ public class UserRepositoryAdapter implements UserRepository {
         entity.setFullName(user.getFullName());
         entity.setEmail(user.getEmail());
         entity.setPasswordHash(user.getPasswordHash());
+        entity.setResetToken(user.getResetToken());
+        entity.setIsTwoFactorEnabled(user.getIsTwoFactorEnabled() != null ? user.getIsTwoFactorEnabled() : false);
+        entity.setTwoFactorCode(user.getTwoFactorCode());
 
         // Actualiza los roles
         entity.setRoles(user.getRoles().stream()
@@ -114,7 +120,10 @@ public class UserRepositoryAdapter implements UserRepository {
                 entity.getEmail(),
                 entity.getPasswordHash(),
                 roles,
-                entity.getCreatedAt()
+                entity.getCreatedAt(),
+                entity.getResetToken(),
+                entity.getIsTwoFactorEnabled(),
+                entity.getTwoFactorCode()
         );
     }
 }
