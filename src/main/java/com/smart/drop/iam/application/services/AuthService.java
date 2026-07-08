@@ -73,7 +73,7 @@ public class AuthService {
             System.out.println("\n=======================================================");
             System.out.println("2FA CODE GENERATED FOR " + email + ": " + code);
             System.out.println("=======================================================\n");
-            throw new TwoFactorRequiredException(email);
+            throw new TwoFactorRequiredException(email, code);
         }
 
         return user;

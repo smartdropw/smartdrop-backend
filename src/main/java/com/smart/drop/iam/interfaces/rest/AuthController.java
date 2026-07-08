@@ -63,7 +63,7 @@ public class AuthController {
             UserResponseDto response = toUserResponseDto(user);
             return ResponseEntity.ok(response);
         } catch (TwoFactorRequiredException e) {
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(Map.of("requires2FA", true, "message", "A 6-digit code has been sent to your email."));
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(Map.of("requires2FA", true, "simulatedCode", e.getSimulatedCode(), "message", "A 6-digit code has been sent to your email."));
         }
     }
 
