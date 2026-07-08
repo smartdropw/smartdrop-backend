@@ -124,6 +124,24 @@ public class AuthService {
         return userRepository.update(user);
     }
 
+    public void changePassword(String email, String currentPassword, String newPassword) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> UserNotFoundException.withEmail(email));
+
+        if (!user.getPasswordHash().equals(currentPassword)) {
+            throw new IllegalArgumentException("Current password is incorrect");
+        }
+
+        user.setPasswordHash(newPassword);
+        userRepository.update(user);
+    }
+
+    public void disable2FA(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> UserNotFoundException.withEmail(email));
+        user.setIsTwoFactorEnabled(false);
+        userRepository.update(user);
+    }
 
     /**
      * Obtiene un usuario por ID.

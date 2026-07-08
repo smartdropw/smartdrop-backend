@@ -9,6 +9,8 @@ import com.smart.drop.iam.interfaces.rest.dto.ForgotPasswordRequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.ResetPasswordRequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.Enable2FARequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.Verify2FARequestDto;
+import com.smart.drop.iam.interfaces.rest.dto.ChangePasswordRequestDto;
+import com.smart.drop.iam.interfaces.rest.dto.Disable2FARequestDto;
 import com.smart.drop.iam.domain.exceptions.TwoFactorRequiredException;
 import com.smart.drop.iam.domain.model.User;
 import org.springframework.http.HttpStatus;
@@ -95,6 +97,18 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
+
+    @PutMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequestDto request) {
+        authService.changePassword(request.email(), request.currentPassword(), request.newPassword());
+        return ResponseEntity.ok(Map.of("success", true, "message", "Password changed successfully."));
+    }
+
+    @PostMapping("/2fa/disable")
+    public ResponseEntity<?> disable2FA(@RequestBody Disable2FARequestDto request) {
+        authService.disable2FA(request.email());
+        return ResponseEntity.ok(Map.of("success", true, "message", "2FA has been disabled."));
+    }
 
     /**
      * Obtiene un usuario por su ID.
