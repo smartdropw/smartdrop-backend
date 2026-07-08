@@ -81,6 +81,13 @@ public class AuthController {
         return ResponseEntity.ok(Map.of("success", true, "message", "2FA has been enabled successfully via Email."));
     }
 
+    @GetMapping("/2fa/status/{email}")
+    public ResponseEntity<?> get2FAStatus(@PathVariable String email) {
+        return authService.getUserByEmail(email)
+                .map(user -> ResponseEntity.ok(Map.of("enabled", Boolean.TRUE.equals(user.getIsTwoFactorEnabled()))))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping("/2fa/verify")
     public ResponseEntity<UserResponseDto> verify2FA(@RequestBody Verify2FARequestDto request) {
         User user = authService.verify2FA(request.email(), request.code());
