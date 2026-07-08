@@ -55,9 +55,9 @@ public class AuthService {
      * Valida las credenciales e inicia sesión para un usuario.
      *
      * @param email el email del usuario
-     * @param password la contraseña en texto plano
      * @return el usuario validado
      */
+    @Transactional(noRollbackFor = TwoFactorRequiredException.class)
     public User loginUser(String email, String password) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> UserNotFoundException.withEmail(email));
