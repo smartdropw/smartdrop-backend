@@ -32,7 +32,7 @@ public class MetricEntity {
     @Column(name = "Name", length = 50)
     private String name;
 
-    @Column(name = "Value", precision = 10, scale = 2)
+    @Column(name = "metric_value", precision = 10, scale = 2)
     private BigDecimal value;
 
     @Column(name = "Unit", length = 20)

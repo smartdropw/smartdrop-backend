@@ -1,0 +1,52 @@
+services:
+  smartdrop-mysql:
+    image: mysql:8.0
+    container_name: smartdrop-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: drop_db
+      MYSQL_USER: smartdrop_user
+      MYSQL_PASSWORD: smartdroppassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - smartdrop-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  smartdrop-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smartdrop-backend
+    restart: on-failure
+    depends_on:
+      smartdrop-mysql:
+        condition: service_healthy
+    environment:
+      PORT: 8080
+      SPRING_PROFILES_ACTIVE: mysql
+      DATABASE_URL: smartdrop-mysql
+      DATABASE_PORT: 3306
+      DATABASE_NAME: drop_db
+      DATABASE_USER: smartdrop_user
+      DATABASE_PASSWORD: smartdroppassword
+      JPA_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    networks:
+      - smartdrop-net
+
+volumes:
+  mysql-data:
+    driver: local
+
+networks:
+  smartdrop-net:
+    driver: bridge

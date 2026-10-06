@@ -15,7 +15,7 @@ import java.util.List;
  * Mapea requests HTTP a casos de uso del dominio.
  */
 @RestController
-@RequestMapping("/api/v1/identity/roles")
+@RequestMapping({"/api/v1/iam/roles", "/api/v1/identity/roles"})
 public class RoleController {
 
     private final RoleService roleService;

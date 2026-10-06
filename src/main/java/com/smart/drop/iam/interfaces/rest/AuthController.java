@@ -25,7 +25,7 @@ import java.util.Map;
  * Mapea requests HTTP a casos de uso del dominio.
  */
 @RestController
-@RequestMapping("/api/iam/auth")
+@RequestMapping({"/api/v1/iam/auth", "/api/iam/auth", "/api/identity/auth"})
 public class AuthController {
 
     private final AuthService authService;

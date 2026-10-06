@@ -1,0 +1,21 @@
+# ==============================================================================
+# SMARTDROP BACKEND - RENDER BLUEPRINT CONFIGURATION
+# Render Web Service Deployment Spec (Docker Native)
+# ==============================================================================
+services:
+  - type: web
+    name: smartdrop-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: SPRING_PROFILES_ACTIVE
+        value: dev
+      - key: TZ
+        value: America/Lima
+      - key: JAVA_TOOL_OPTIONS
+        value: "-Xmx512m -XX:+UseContainerSupport"

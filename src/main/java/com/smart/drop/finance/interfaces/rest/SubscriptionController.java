@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/smartdrop/finance/subscriptions")
+@RequestMapping({"/api/v1/finance/subscriptions", "/api/smartdrop/finance/subscriptions"})
 public class SubscriptionController {
 
     private final PaymentService paymentService;

@@ -39,7 +39,7 @@ public class UserEntity {
     @Column(name = "TwoFactorCode", length = 6)
     private String twoFactorCode;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "UserRoles",
             joinColumns = @JoinColumn(name = "UserId"),
