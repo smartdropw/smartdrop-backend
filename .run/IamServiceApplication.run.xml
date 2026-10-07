@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="IamServiceApplication (8081)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="smartdrop-iam-service" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.smart.drop.IamServiceApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

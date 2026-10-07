@@ -1,51 +1,83 @@
 services:
-  smartdrop-mysql:
-    image: mysql:8.0
-    container_name: smartdrop-mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: drop_db
-      MYSQL_USER: smartdrop_user
-      MYSQL_PASSWORD: smartdroppassword
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - smartdrop-net
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  smartdrop-backend:
+  smartdrop-iam-service:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: smartdrop-backend
+      args:
+        SERVICE_NAME: smartdrop-iam-service
+    container_name: smartdrop-iam-service
     restart: on-failure
-    depends_on:
-      smartdrop-mysql:
-        condition: service_healthy
     environment:
-      PORT: 8080
-      SPRING_PROFILES_ACTIVE: mysql
-      DATABASE_URL: smartdrop-mysql
-      DATABASE_PORT: 3306
-      DATABASE_NAME: drop_db
-      DATABASE_USER: smartdrop_user
-      DATABASE_PASSWORD: smartdroppassword
-      JPA_DDL_AUTO: update
+      PORT: 8081
+      SPRING_PROFILES_ACTIVE: dev
     ports:
-      - "8080:8080"
+      - "8081:8081"
     networks:
       - smartdrop-net
 
-volumes:
-  mysql-data:
-    driver: local
+  smartdrop-inventory-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: smartdrop-inventory-service
+    container_name: smartdrop-inventory-service
+    restart: on-failure
+    environment:
+      PORT: 8082
+      SPRING_PROFILES_ACTIVE: dev
+    ports:
+      - "8082:8082"
+    networks:
+      - smartdrop-net
+
+  smartdrop-analytics-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: smartdrop-analytics-service
+    container_name: smartdrop-analytics-service
+    restart: on-failure
+    environment:
+      PORT: 8083
+      SPRING_PROFILES_ACTIVE: dev
+    ports:
+      - "8083:8083"
+    networks:
+      - smartdrop-net
+
+  smartdrop-support-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: smartdrop-support-service
+    container_name: smartdrop-support-service
+    restart: on-failure
+    environment:
+      PORT: 8084
+      SPRING_PROFILES_ACTIVE: dev
+    ports:
+      - "8084:8084"
+    networks:
+      - smartdrop-net
+
+  smartdrop-finance-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: smartdrop-finance-service
+    container_name: smartdrop-finance-service
+    restart: on-failure
+    environment:
+      PORT: 8085
+      SPRING_PROFILES_ACTIVE: dev
+    ports:
+      - "8085:8085"
+    networks:
+      - smartdrop-net
 
 networks:
   smartdrop-net:

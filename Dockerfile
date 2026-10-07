@@ -1,39 +1,44 @@
 # ==============================================================================
-# SMARTDROP BACKEND - MULTI-STAGE DOCKERFILE FOR RENDER / CLOUD
-# Base Image: Eclipse Temurin OpenJDK 21 (LTS)
+# SMARTDROP MICROSERVICES - MULTI-MODULE DOCKERFILE
+# Permite compilar y empaquetar cualquiera de los microservicios mediante
+# el argumento de compilación: SERVICE_NAME
 # ==============================================================================
+ARG SERVICE_NAME=smartdrop-iam-service
 
-# STAGE 1: Build & Package
+# STAGE 1: Build
 FROM eclipse-temurin:21-jdk-jammy AS build
+ARG SERVICE_NAME
 WORKDIR /app
 
-# Copiar archivos de Maven para aprovechar la caché de dependencias
+# Copiar configuración Maven y proyectos
 COPY .mvn/ .mvn/
 COPY mvnw pom.xml ./
-RUN chmod +x mvnw
-RUN ./mvnw dependency:go-offline -B
+COPY smartdrop-shared/ smartdrop-shared/
+COPY smartdrop-iam-service/ smartdrop-iam-service/
+COPY smartdrop-inventory-service/ smartdrop-inventory-service/
+COPY smartdrop-analytics-service/ smartdrop-analytics-service/
+COPY smartdrop-support-service/ smartdrop-support-service/
+COPY smartdrop-finance-service/ smartdrop-finance-service/
 
-# Copiar código fuente y compilar artefacto omitiendo pruebas unitarias en build final
-COPY src ./src
-RUN ./mvnw clean package -DskipTests -B
+RUN chmod +x mvnw
+RUN ./mvnw clean package -DskipTests -pl ${SERVICE_NAME} -am -B
 
 # STAGE 2: Runtime Production Image
 FROM eclipse-temurin:21-jre-jammy AS runtime
+ARG SERVICE_NAME
 WORKDIR /app
 
 # Crear usuario de sistema sin privilegios de root por seguridad
 RUN addgroup --system spring && adduser --system spring --ingroup spring
 USER spring:spring
 
-# Copiar el archivo ejecutable JAR compilado
-COPY --from=build /app/target/*.jar app.jar
+# Copiar el ejecutable JAR del microservicio seleccionado
+COPY --from=build /app/${SERVICE_NAME}/target/*.jar app.jar
 
-# Render asigna dinámicamente la variable de entorno $PORT (por defecto 8080)
 ENV PORT=8080
 ENV SPRING_PROFILES_ACTIVE=dev
 EXPOSE 8080
 
-# Healthcheck para orquestadores
 HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
   CMD curl -f http://localhost:${PORT}/api/v1/health || exit 1
 
