@@ -91,7 +91,7 @@ Al abrir MySQL Workbench y crear/editar una conexión (botón `+` en *MySQL Conn
 | **Hostname** | `localhost` *(o `127.0.0.1`)* | Indica que el servidor MySQL corre en tu misma máquina. |
 | **Port** | `3306` | Puerto por defecto del servicio `MySQL80` en Windows. |
 | **Username** | `root` | Usuario administrador principal de MySQL. |
-| **Password** | Clic en **Store in Vault...** e ingresar `upcadmin` | Tu contraseña de MySQL. |
+| **Password** | Clic en **Store in Vault...** e ingresar `admin` | Contraseña configurada en tu servicio local de MySQL. |
 
 > Haz clic en **Test Connection** para comprobar que la conexión sea exitosa.
 
