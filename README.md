@@ -77,6 +77,50 @@ Cada microservicio cuenta con su propia base de datos H2 en memoria aislada (*Da
 
 ---
 
+## 🐬 Conexión y Configuración con MySQL Workbench
+
+Si deseas persistencia real en lugar de H2 en memoria, tu base de datos local de **MySQL 8.0** está completamente integrada:
+
+### 1. Parámetros de Conexión en MySQL Workbench
+Al abrir MySQL Workbench y crear/editar una conexión (botón `+` en *MySQL Connections*), configura los campos exactamente así:
+
+| Campo en MySQL Workbench | Valor a Colocar | Explicación |
+| :--- | :--- | :--- |
+| **Connection Name** | `SmartDrop Local` | Nombre visual descriptivo para identificar tu conexión. |
+| **Connection Method** | `Standard (TCP/IP)` | Protocolo estándar de conexión. |
+| **Hostname** | `localhost` *(o `127.0.0.1`)* | Indica que el servidor MySQL corre en tu misma máquina. |
+| **Port** | `3306` | Puerto por defecto del servicio `MySQL80` en Windows. |
+| **Username** | `root` | Usuario administrador principal de MySQL. |
+| **Password** | Clic en **Store in Vault...** e ingresar `upcadmin` | Tu contraseña de MySQL. |
+
+> Haz clic en **Test Connection** para comprobar que la conexión sea exitosa.
+
+### 2. Creación de Esquemas en MySQL Workbench
+1. Entra a tu conexión en MySQL Workbench.
+2. Abre una pestaña de consulta SQL (`File > New Query Tab` o presiona `Ctrl + T`).
+3. Abre o copia el archivo [`scripts/init-mysql-databases.sql`](file:///C:/Users/USUARIO/IdeaProjects/backend-smardrop-funda/scripts/init-mysql-databases.sql).
+4. Ejecuta el script completo con el botón del **RAYO (⚡)** o presionando `Ctrl + Shift + Enter`.
+5. En el panel izquierdo de **SCHEMAS**, haz clic en el botón de actualizar (icono de flechas circulares). Verás creados los 5 esquemas:
+   - `drop_iam_db`
+   - `drop_inventory_db`
+   - `drop_analytics_db`
+   - `drop_support_db`
+   - `drop_finance_db`
+
+### 3. ¿Cómo se crean las tablas? (Autogeneración con Hibernate)
+**No tienes que escribir sentencias `CREATE TABLE` a mano en Workbench.**
+Cada microservicio cuenta con su archivo `application-mysql.properties` configurado con `spring.jpa.hibernate.ddl-auto=update`. Al arrancar el microservicio con el perfil `mysql`, Spring Boot se conecta a su respectivo esquema y **crea automáticamente todas las tablas, columnas, índices y claves foráneas**, insertando también los datos iniciales de prueba.
+
+### 4. Cómo arrancar en modo MySQL
+* **En Eclipse:** Clic derecho sobre los lanzadores `SmartDrop-*-MySQL.launch` en la carpeta `eclipse-launchers/` > **Run As**.
+* **En Terminal (Maven Wrapper):**
+  ```bash
+  # Arrancar IAM Service apuntando a MySQL:
+  ./mvnw spring-boot:run -pl smartdrop-iam-service -Dspring-boot.run.profiles=mysql
+  ```
+
+---
+
 ## 🎯 Patrones de Diseño Implementados
 
 1. **Strategy (GoF) — Evaluación Polimórfica de Alertas (`smartdrop-analytics-service`):**
