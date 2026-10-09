@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "2. Bounded Context: User Profiles & Preferences", description = "Preferencias operativas y configuración de notificaciones del usuario")
+@Tag(name = "2. Profiles — PreferencesController", description = "Preferencias operativas y configuración de notificaciones")
 @RestController
 @RequestMapping({"/api/v1/profiles/preferences", "/api/v1/preferences"})
 public class PreferencesController {

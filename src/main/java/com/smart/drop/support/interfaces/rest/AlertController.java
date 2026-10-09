@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "5. Bounded Context: Support & Emergency Alerts", description = "Gestión de alertas críticas de fuga nocturna, emergencias y resolución de incidencias")
+@Tag(name = "5. Support — AlertController", description = "Gestión y resolución de alertas críticas de emergencia")
 @RestController
 @RequestMapping("/api/v1/support/alerts")
 public class AlertController {

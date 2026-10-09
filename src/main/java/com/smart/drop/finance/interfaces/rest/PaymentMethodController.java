@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "6. Bounded Context: Finance & Subscriptions", description = "Administración de métodos de pago y tarjetas asociadas")
+@Tag(name = "6. Finance — PaymentMethodController", description = "Administración de métodos de pago y tarjetas asociadas")
 @RestController
 @RequestMapping("/api/v1/finance/payment-methods")
 public class PaymentMethodController {

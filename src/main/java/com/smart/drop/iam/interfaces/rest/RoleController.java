@@ -15,7 +15,7 @@ import java.util.List;
  * Controlador REST para gestión de roles.
  * Mapea requests HTTP a casos de uso del dominio.
  */
-@Tag(name = "1. Bounded Context: IAM & Identity", description = "Catálogo y asignación de roles del sistema (ROLE_ADMIN, ROLE_USER)")
+@Tag(name = "7. Backend Admin — RoleController", description = "Catálogo y asignación técnica de roles del sistema")
 @RestController
 @RequestMapping({"/api/v1/iam/roles", "/api/v1/identity/roles"})
 public class RoleController {

@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping({"/api/v1/health", "/health"})
-@Tag(name = "8. System & Monitoring", description = "Endpoints de verificación de estado y liveness probe para Render y la nube")
+@Tag(name = "8. System — HealthController", description = "Sonda de liveness probe y verificación de salud para Render y nube")
 public class HealthController {
 
     @GetMapping

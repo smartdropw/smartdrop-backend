@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "7. Backend & Internal Administration", description = "Gestión interna de administradores de plataforma y permisos")
+@Tag(name = "7. Backend Admin — AdminController", description = "Gestión interna de administradores de plataforma y credenciales")
 @RestController
 @RequestMapping("/api/v1/administration/admins")
 public class AdminController {

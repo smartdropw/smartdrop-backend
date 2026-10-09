@@ -8,7 +8,7 @@ import com.smart.drop.inventory.interfaces.rest.dto.UpdateIrrigationConfigReques
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "3. Bounded Context: Inventory & IoT Monitoring", description = "Automatización de válvulas y configuración de riego tecnificado")
+@Tag(name = "3. Inventory & IoT — IrrigationConfigController", description = "Automatización de válvulas y configuración de riego tecnificado")
 @RestController
 @RequestMapping("/api/v1/inventory/irrigation")
 public class IrrigationConfigController {

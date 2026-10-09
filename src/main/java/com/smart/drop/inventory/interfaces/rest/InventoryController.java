@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "7. Backend & Internal Administration", description = "Inventario físico y control de stock de dispositivos y repuestos")
+@Tag(name = "7. Backend Admin — InventoryController", description = "Control de stock físico de sensores y repuestos en almacén central")
 @RestController
 @RequestMapping("/api/v1/inventory/inventories")
 public class InventoryController {

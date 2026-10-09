@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "4. Bounded Context: Analytics & Intelligence", description = "Reportes de auditoría hídrica y certificaciones para consumo e industria")
+@Tag(name = "4. Analytics — ReportController", description = "Generación de reportes de auditoría hídrica y certificaciones")
 @RestController
 @RequestMapping("/api/v1/analytics/reports")
 public class ReportController {

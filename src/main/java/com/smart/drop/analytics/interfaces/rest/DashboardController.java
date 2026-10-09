@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "4. Bounded Context: Analytics & Intelligence", description = "Consolidado de KPIs, niveles actuales y telemetría en tiempo real para dashboards")
+@Tag(name = "4. Analytics — DashboardController", description = "Consolidado de KPIs operativos y telemetría en tiempo real")
 @RestController
 @RequestMapping("/api/v1/analytics/dashboard")
 public class DashboardController {

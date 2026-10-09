@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "3. Bounded Context: Inventory & IoT Monitoring", description = "Cubicación geométrica, registro y monitoreo volumétrico de tanques residenciales e industriales")
+@Tag(name = "3. Inventory & IoT — TankController", description = "Cubicación geométrica y monitoreo volumétrico de tanques")
 @RestController
 @RequestMapping("/api/v1/inventory/tanks")
 public class TankController {

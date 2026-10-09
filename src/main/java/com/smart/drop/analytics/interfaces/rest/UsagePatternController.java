@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "4. Bounded Context: Analytics & Intelligence", description = "Detección de patrones de consumo, fugas nocturnas y excursiones térmicas (patrón Strategy)")
+@Tag(name = "4. Analytics — UsagePatternController", description = "Detección de patrones de consumo y fugas nocturnas (Strategy)")
 @RestController
 @RequestMapping("/api/v1/analytics/patterns")
 public class UsagePatternController {

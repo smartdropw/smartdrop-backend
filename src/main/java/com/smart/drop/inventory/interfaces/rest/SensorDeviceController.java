@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "3. Bounded Context: Inventory & IoT Monitoring", description = "Gestión, emparejamiento y telemetría en tiempo real de dispositivos IoT")
+@Tag(name = "3. Inventory & IoT — SensorDeviceController", description = "Telemetría, emparejamiento y estado de dispositivos IoT")
 @RestController
 @RequestMapping("/api/v1/inventory/devices")
 public class SensorDeviceController {

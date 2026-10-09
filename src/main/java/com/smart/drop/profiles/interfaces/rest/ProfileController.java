@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "2. Bounded Context: User Profiles & Preferences", description = "Gestión de perfiles de usuario, datos de contacto e información de cuenta")
+@Tag(name = "2. Profiles — ProfileController", description = "Gestión de perfiles de usuario y datos de contacto")
 @RestController
 @RequestMapping("/api/v1/profiles")
 public class ProfileController {

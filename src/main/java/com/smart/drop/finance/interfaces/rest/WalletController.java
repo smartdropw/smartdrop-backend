@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "6. Bounded Context: Finance & Subscriptions", description = "Billetera digital del usuario, recarga de saldo y retiros")
+@Tag(name = "6. Finance — WalletController", description = "Billetera digital del usuario, recarga de saldo y retiros")
 @RestController
 @RequestMapping("/api/v1/finance/wallet")
 public class WalletController {

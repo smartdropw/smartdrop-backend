@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "3. Bounded Context: Inventory & IoT Monitoring", description = "Historial de consumo hídrico, métricas horarias y cálculos de demanda volumétrica")
+@Tag(name = "3. Inventory & IoT — ConsumptionController", description = "Registro histórico de consumo hídrico y cálculo de demanda")
 @RestController
 @RequestMapping("/api/v1/inventory/consumptions")
 public class ConsumptionController {

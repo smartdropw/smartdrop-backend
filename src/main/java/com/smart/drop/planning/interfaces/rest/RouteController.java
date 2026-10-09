@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "6. Bounded Context: Finance & Subscriptions", description = "Rutas de distribución logística y transportistas para insumos")
+@Tag(name = "7. Backend Admin — RouteController", description = "Logística de distribución y transportistas para insumos")
 @RestController
 @RequestMapping("/api/v1/planning/routes")
 public class RouteController {

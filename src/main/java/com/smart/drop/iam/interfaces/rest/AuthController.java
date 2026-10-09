@@ -25,7 +25,7 @@ import java.util.Map;
  * Controlador REST para gestión de autenticación y usuarios.
  * Mapea requests HTTP a casos de uso del dominio.
  */
-@Tag(name = "1. Bounded Context: IAM & Identity", description = "Autenticación JWT, registro de usuarios, control de sesiones y seguridad 2FA")
+@Tag(name = "1. IAM — AuthController", description = "Autenticación JWT, registro de usuarios, control de sesiones y 2FA")
 @RestController
 @RequestMapping({"/api/v1/iam/auth", "/api/iam/auth", "/api/identity/auth"})
 public class AuthController {

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "5. Bounded Context: Support & Emergency Alerts", description = "Gestión del ciclo de vida y escalamiento de tickets de soporte técnico")
+@Tag(name = "5. Support — SupportController", description = "Gestión y seguimiento de tickets de soporte técnico")
 @RestController
 @RequestMapping("/api/v1/support/management")
 public class SupportController {

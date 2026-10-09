@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "5. Bounded Context: Support & Emergency Alerts", description = "Despacho de notificaciones push, alertas al usuario y confirmación de lectura")
+@Tag(name = "5. Support — NotificationController", description = "Centro de notificaciones push y alertas al usuario")
 @RestController
 @RequestMapping("/api/v1/support/notifications")
 public class NotificationController {

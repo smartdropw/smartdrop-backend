@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "7. Backend & Internal Administration", description = "Parámetros globales de configuración del sistema y umbrales base")
+@Tag(name = "7. Backend Admin — ConfigController", description = "Parámetros globales de configuración del servidor y timeouts")
 @RestController
 @RequestMapping("/api/v1/administration/configs")
 public class ConfigController {
