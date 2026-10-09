@@ -1,5 +1,6 @@
 package com.smart.drop.profiles.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.profiles.application.services.PreferencesService;
 import com.smart.drop.profiles.domain.model.entities.Preferences;
 import com.smart.drop.profiles.interfaces.rest.dto.PreferencesResponse;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "2. Bounded Context: User Profiles & Preferences", description = "Preferencias operativas y configuración de notificaciones del usuario")
 @RestController
 @RequestMapping({"/api/v1/profiles/preferences", "/api/v1/preferences"})
 public class PreferencesController {

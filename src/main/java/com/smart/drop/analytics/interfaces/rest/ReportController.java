@@ -1,5 +1,6 @@
 package com.smart.drop.analytics.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.analytics.application.services.ReportService;
 import com.smart.drop.analytics.domain.model.entities.Metric;
 import com.smart.drop.analytics.domain.model.entities.Report;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "4. Bounded Context: Analytics & Intelligence", description = "Reportes de auditoría hídrica y certificaciones para consumo e industria")
 @RestController
 @RequestMapping("/api/v1/analytics/reports")
 public class ReportController {

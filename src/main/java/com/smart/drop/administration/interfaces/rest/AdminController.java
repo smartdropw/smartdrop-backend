@@ -1,5 +1,6 @@
 package com.smart.drop.administration.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.administration.application.services.AdminManagementService;
 import com.smart.drop.administration.domain.model.entities.AdminUser;
 import com.smart.drop.administration.interfaces.rest.dto.AdminUserResponse;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "7. Backend & Internal Administration", description = "Gestión interna de administradores de plataforma y permisos")
 @RestController
 @RequestMapping("/api/v1/administration/admins")
 public class AdminController {

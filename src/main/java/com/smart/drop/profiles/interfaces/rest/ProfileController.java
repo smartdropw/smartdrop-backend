@@ -1,5 +1,6 @@
 package com.smart.drop.profiles.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.profiles.application.services.ProfileService;
 import com.smart.drop.profiles.domain.model.aggregates.Profile;
 import com.smart.drop.profiles.domain.model.entities.Preferences;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "2. Bounded Context: User Profiles & Preferences", description = "Gestión de perfiles de usuario, datos de contacto e información de cuenta")
 @RestController
 @RequestMapping("/api/v1/profiles")
 public class ProfileController {

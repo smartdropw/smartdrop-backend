@@ -1,5 +1,6 @@
 package com.smart.drop.support.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.support.application.services.NotificationService;
 import com.smart.drop.support.domain.model.entities.Notification;
 import com.smart.drop.support.interfaces.rest.dto.CreateNotificationRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "5. Bounded Context: Support & Emergency Alerts", description = "Despacho de notificaciones push, alertas al usuario y confirmación de lectura")
 @RestController
 @RequestMapping("/api/v1/support/notifications")
 public class NotificationController {

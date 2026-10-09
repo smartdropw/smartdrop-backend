@@ -1,5 +1,6 @@
 package com.smart.drop.inventory.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.inventory.application.services.ConsumptionService;
 import com.smart.drop.inventory.domain.model.entities.Consumption;
 import com.smart.drop.inventory.interfaces.rest.dto.ConsumptionResponse;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "3. Bounded Context: Inventory & IoT Monitoring", description = "Historial de consumo hídrico, métricas horarias y cálculos de demanda volumétrica")
 @RestController
 @RequestMapping("/api/v1/inventory/consumptions")
 public class ConsumptionController {

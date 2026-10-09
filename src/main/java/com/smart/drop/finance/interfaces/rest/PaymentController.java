@@ -1,5 +1,6 @@
 package com.smart.drop.finance.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.finance.application.services.PaymentService;
 import com.smart.drop.finance.domain.model.entities.Invoice;
 import com.smart.drop.finance.domain.model.entities.Payment;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "6. Bounded Context: Finance & Subscriptions", description = "Procesamiento de pagos, facturas y transacciones")
 @RestController
 @RequestMapping("/api/v1/finance/payments")
 public class PaymentController {

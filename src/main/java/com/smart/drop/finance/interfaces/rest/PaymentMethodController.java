@@ -1,5 +1,6 @@
 package com.smart.drop.finance.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.finance.application.services.WalletService;
 import com.smart.drop.finance.domain.model.entities.PaymentMethod;
 import com.smart.drop.finance.interfaces.rest.dto.CreatePaymentMethodRequest;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "6. Bounded Context: Finance & Subscriptions", description = "Administración de métodos de pago y tarjetas asociadas")
 @RestController
 @RequestMapping("/api/v1/finance/payment-methods")
 public class PaymentMethodController {

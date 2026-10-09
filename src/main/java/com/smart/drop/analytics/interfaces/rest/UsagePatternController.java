@@ -1,5 +1,6 @@
 package com.smart.drop.analytics.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.analytics.application.services.UsagePatternService;
 import com.smart.drop.analytics.domain.model.entities.UsagePattern;
 import com.smart.drop.analytics.interfaces.rest.dto.CreateUsagePatternRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "4. Bounded Context: Analytics & Intelligence", description = "Detección de patrones de consumo, fugas nocturnas y excursiones térmicas (patrón Strategy)")
 @RestController
 @RequestMapping("/api/v1/analytics/patterns")
 public class UsagePatternController {

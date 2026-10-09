@@ -1,5 +1,6 @@
 package com.smart.drop.administration.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.administration.application.services.ConfigService;
 import com.smart.drop.administration.domain.model.entities.SystemConfiguration;
 import com.smart.drop.administration.interfaces.rest.dto.CreateConfigRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "7. Backend & Internal Administration", description = "Parámetros globales de configuración del sistema y umbrales base")
 @RestController
 @RequestMapping("/api/v1/administration/configs")
 public class ConfigController {

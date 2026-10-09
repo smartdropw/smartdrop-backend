@@ -1,5 +1,6 @@
 package com.smart.drop.inventory.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.inventory.application.services.TankService;
 import com.smart.drop.inventory.domain.model.entities.Tank;
 import com.smart.drop.inventory.interfaces.rest.dto.CreateTankRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "3. Bounded Context: Inventory & IoT Monitoring", description = "Cubicación geométrica, registro y monitoreo volumétrico de tanques residenciales e industriales")
 @RestController
 @RequestMapping("/api/v1/inventory/tanks")
 public class TankController {

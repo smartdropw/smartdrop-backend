@@ -1,5 +1,6 @@
 package com.smart.drop.inventory.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.inventory.application.services.InventoryService;
 import com.smart.drop.inventory.domain.model.entities.Inventory;
 import com.smart.drop.inventory.interfaces.rest.dto.CreateInventoryRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "7. Backend & Internal Administration", description = "Inventario físico y control de stock de dispositivos y repuestos")
 @RestController
 @RequestMapping("/api/v1/inventory/inventories")
 public class InventoryController {

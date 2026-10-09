@@ -1,5 +1,6 @@
 package com.smart.drop.inventory.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.inventory.application.services.SensorDeviceService;
 import com.smart.drop.inventory.domain.model.entities.SensorDevice;
 import com.smart.drop.inventory.interfaces.rest.dto.CreateSensorDeviceRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "3. Bounded Context: Inventory & IoT Monitoring", description = "Gestión, emparejamiento y telemetría en tiempo real de dispositivos IoT")
 @RestController
 @RequestMapping("/api/v1/inventory/devices")
 public class SensorDeviceController {

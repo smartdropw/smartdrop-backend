@@ -1,5 +1,6 @@
 package com.smart.drop.support.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.support.application.services.AlertService;
 import com.smart.drop.support.domain.model.entities.Alert;
 import com.smart.drop.support.interfaces.rest.dto.CreateAlertRequest;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "5. Bounded Context: Support & Emergency Alerts", description = "Gestión de alertas críticas de fuga nocturna, emergencias y resolución de incidencias")
 @RestController
 @RequestMapping("/api/v1/support/alerts")
 public class AlertController {

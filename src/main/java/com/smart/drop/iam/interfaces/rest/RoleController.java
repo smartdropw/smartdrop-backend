@@ -1,5 +1,6 @@
 package com.smart.drop.iam.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.iam.application.services.RoleService;
 import com.smart.drop.iam.interfaces.rest.dto.RoleRequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.RoleResponseDto;
@@ -14,6 +15,7 @@ import java.util.List;
  * Controlador REST para gestión de roles.
  * Mapea requests HTTP a casos de uso del dominio.
  */
+@Tag(name = "1. Bounded Context: IAM & Identity", description = "Catálogo y asignación de roles del sistema (ROLE_ADMIN, ROLE_USER)")
 @RestController
 @RequestMapping({"/api/v1/iam/roles", "/api/v1/identity/roles"})
 public class RoleController {

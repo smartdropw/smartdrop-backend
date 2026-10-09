@@ -1,5 +1,6 @@
 package com.smart.drop.administration.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.administration.application.services.AuditService;
 import com.smart.drop.administration.domain.model.entities.AuditLog;
 import com.smart.drop.administration.interfaces.rest.dto.AuditLogResponse;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "7. Backend & Internal Administration", description = "Trazabilidad y registro inmutable de auditoría de operaciones")
 @RestController
 @RequestMapping("/api/v1/administration/audit-logs")
 public class AuditController {

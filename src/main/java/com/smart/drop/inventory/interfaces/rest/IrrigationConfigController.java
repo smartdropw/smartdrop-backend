@@ -1,5 +1,6 @@
 package com.smart.drop.inventory.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.inventory.application.services.IrrigationConfigService;
 import com.smart.drop.inventory.domain.model.entities.IrrigationConfig;
 import com.smart.drop.inventory.interfaces.rest.dto.IrrigationConfigResponse;
@@ -7,6 +8,7 @@ import com.smart.drop.inventory.interfaces.rest.dto.UpdateIrrigationConfigReques
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "3. Bounded Context: Inventory & IoT Monitoring", description = "Automatización de válvulas y configuración de riego tecnificado")
 @RestController
 @RequestMapping("/api/v1/inventory/irrigation")
 public class IrrigationConfigController {

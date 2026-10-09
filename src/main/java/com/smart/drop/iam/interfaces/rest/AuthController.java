@@ -1,5 +1,6 @@
 package com.smart.drop.iam.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.iam.application.services.AuthService;
 import com.smart.drop.iam.interfaces.rest.dto.LoginUserRequestDto;
 import com.smart.drop.iam.interfaces.rest.dto.RegisterUserRequestDto;
@@ -24,6 +25,7 @@ import java.util.Map;
  * Controlador REST para gestión de autenticación y usuarios.
  * Mapea requests HTTP a casos de uso del dominio.
  */
+@Tag(name = "1. Bounded Context: IAM & Identity", description = "Autenticación JWT, registro de usuarios, control de sesiones y seguridad 2FA")
 @RestController
 @RequestMapping({"/api/v1/iam/auth", "/api/iam/auth", "/api/identity/auth"})
 public class AuthController {

@@ -1,5 +1,6 @@
 package com.smart.drop.finance.interfaces.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.smart.drop.finance.application.services.WalletService;
 import com.smart.drop.finance.domain.model.entities.Wallet;
 import com.smart.drop.finance.domain.model.entities.WalletTransaction;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "6. Bounded Context: Finance & Subscriptions", description = "Billetera digital del usuario, recarga de saldo y retiros")
 @RestController
 @RequestMapping("/api/v1/finance/wallet")
 public class WalletController {
